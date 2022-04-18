@@ -42,24 +42,31 @@ from typing import List
 
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # select only numbers smaller then target
-        # nums = [n for n in nums if n <= target]
+    def twoSum_brutForce(self, nums: List[int], target: int) -> List[int]:
         # brut force
         for ind1, num1 in enumerate(nums):
             for ind2, num2 in enumerate(nums[ind1+1:], ind1+1):
                 if num1 + num2 == target:
                     return [ind1, ind2]
 
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hash_map = {}  # val: ind
+        for ind, num in enumerate(nums):
+            if target - num in hash_map:
+                return [hash_map[target - num], ind]
+            else:
+                hash_map[num] = ind
+
+
 if __name__ == '__main__':
     sol = Solution()
     nums = [2, 7, 11, 15]
     target = 9
-    # print(sol.twoSum(nums, target))
+    print(sol.twoSum(nums, target))
 
     nums = [3,2,4]
     target = 6
-    # print(sol.twoSum(nums, target))
+    print(sol.twoSum(nums, target))
 
     nums = [0,4,3,0]
     target = 0
