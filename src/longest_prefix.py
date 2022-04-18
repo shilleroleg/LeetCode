@@ -38,8 +38,6 @@ class Solution:
         #
         for single_s in strs:
             i = 1
-            # if len(set(intersect).intersection(single_s)) == 0:
-            #     return ""
             # Run by window
             while i <= len(single_s):
                 if single_s[0:i] in intersect[0:i]:
