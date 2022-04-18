@@ -32,20 +32,47 @@ from typing import List
 
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        intersect = strs[0]
-        for single_s in strs[1:]:
-            intersect = [let for let in single_s if let in intersect]
-        return ''.join(intersect)
+        # Find words with smallest length
+        min_len = min([len(st) for st in strs])
+        intersect = [st for st in strs if len(st) == min_len][0]
+        #
+        for single_s in strs:
+            i = 1
+            # if len(set(intersect).intersection(single_s)) == 0:
+            #     return ""
+            # Run by window
+            while i <= len(single_s):
+                if single_s[0:i] in intersect[0:i]:
+                    i += 1
+                else:
+                    intersect = intersect[0:i-1]
+                    break
+        return intersect
 
 
 if __name__ == '__main__':
     sol = Solution()
-    strs = ["flower", "flow", "flight"]
+    strs = ["flower", "flow", "flight"]     # 'fl'
     print(sol.longestCommonPrefix(strs))
 
-    strs = ["dog", "racecar", "car"]
+    strs = ["dog", "racecar", "car"]        # ''
     print(sol.longestCommonPrefix(strs))
 
-    strs = ["cir", "car"]
+    strs = ["cir", "car"]                   # 'c'
     print(sol.longestCommonPrefix(strs))
+
+    strs = ["ab", "a"]                      # 'a'
+    print(sol.longestCommonPrefix(strs))
+
+    strs = ["reflower", "flow", "flight"]   # ''
+    print(sol.longestCommonPrefix(strs))
+
+    strs = ["a", "b"]                       # ''
+    print(sol.longestCommonPrefix(strs))
+
+    strs = ["aa", "ab"]                     # 'a'
+    print(sol.longestCommonPrefix(strs))
+
+
+
 
