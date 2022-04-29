@@ -1,13 +1,17 @@
 from typing import List
+import random
 
 
 def quick_sort(unsorted: List[int]) -> List[int]:
-    if len(unsorted) < 2:
+    len_list = len(unsorted)
+    if len_list < 2:
         return unsorted
     else:
-        pivot = unsorted[0]
-        less = [i for i in unsorted[1:] if i <= pivot]
-        greater = [i for i in unsorted[1:] if i > pivot]
+        pivot_index = random.randint(0, len_list - 1)
+        pivot = unsorted[pivot_index]
+
+        less = [i for n, i in enumerate(unsorted) if i <= pivot and n != pivot_index]
+        greater = [i for n, i in enumerate(unsorted) if i > pivot and n != pivot_index]
 
         return quick_sort(less) + [pivot] + quick_sort(greater)
 
