@@ -53,23 +53,14 @@ from typing import List
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-
-        ret = 0
-        expect = None
-        change = 0
-
-        for ind, num in enumerate(nums):
-            if num == expect:
-                nums[ind] = '_'
-                change += 1
-            else:
-                expect = num
+        ret = 1
+        expect = nums[0]
+        for ind in range(1, len(nums)):
+            if nums[ind] != expect:
+                nums[ret] = nums[ind]
+                expect = nums[ind]
                 ret += 1
-
-        for i in range(change):
-            nums.remove('_')
         return ret
-
 
 
 if __name__ == '__main__':
