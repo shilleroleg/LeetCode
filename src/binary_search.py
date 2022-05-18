@@ -25,6 +25,7 @@ Constraints:
     nums is sorted in ascending order.
 """
 from typing import List
+import unittest
 
 
 class Solution:
@@ -47,13 +48,20 @@ class Solution:
         return -1
 
 
+class TestSolution(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
+
+    def test_search_exists(self):
+        nums = [-1, 0, 3, 5, 9, 12]
+        target = 9
+        self.assertEqual(self.sol.search(nums, target), 4)
+
+    def test_search_not_exists(self):
+        nums = [-1, 0, 3, 5, 9, 12, 14]
+        target = 2
+        self.assertEqual(self.sol.search(nums, target), -1)
+
+
 if __name__ == "__main__":
-    sol = Solution()
-
-    nums = [-1, 0, 3, 5, 9, 12]
-    target = 9
-    print(sol.search(nums, target))  # -> 4
-
-    nums = [-1, 0, 3, 5, 9, 12, 14]
-    target = 2
-    print(sol.search(nums, target))  # -> -1
+    unittest.main()
