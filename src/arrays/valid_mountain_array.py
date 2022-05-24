@@ -29,7 +29,7 @@ Constraints:
 1 <= arr.length <= 104
 0 <= arr[i] <= 104
 """
-import numpy as np
+
 
 class Solution(object):
     def validMountainArray(self, arr):
