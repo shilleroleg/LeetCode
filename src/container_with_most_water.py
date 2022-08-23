@@ -49,15 +49,6 @@ class Solution:
         return res
 
 
-        # for ind, h in enumerate(height):
-        #     ends = length - 1
-        #     while ends > ind:
-        #         s.append(min(h, height[ends]) * (ends-ind))
-        #         ends -= 1
-        #
-        # return max(s)
-
-
 if __name__ == '__main__':
     height = [2, 3, 4, 5, 18, 17, 6]
     print(Solution().maxArea(height))  # -> 17
